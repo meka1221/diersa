@@ -595,48 +595,51 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     contentPadding:
                         EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                    suffixIcon: Container(
-                      width: 100,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.paste, size: 20),
-                            onPressed: _pasteIntoInput,
-                            padding: EdgeInsets.zero,
-                            constraints: BoxConstraints(),
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.clear, size: 20),
-                            onPressed: _clearInputText,
-                            padding: EdgeInsets.zero,
-                            constraints: BoxConstraints(),
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.photo_camera, size: 20),
-                            onPressed: _pickAndRecognizeText,
-                            tooltip: 'Распознать текст с фото',
-                            padding: EdgeInsets.zero,
-                            constraints: BoxConstraints(),
-                          ),
-                        ],
-                      ),
-                    ),
                   ),
                 ),
               ),
-              const SizedBox(width: 8),
-              Container(
-                margin: EdgeInsets.only(top: 4),
-                child: SpeechToTextButton(
-                  onTextRecognized: (text) {
-                    setState(() {
-                      _textController.text = text;
-                    });
-                  },
-                  language: _selectedSourceLanguage?.code ?? 'en',
-                ),
+              const SizedBox(width: 4),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.paste, size: 20),
+                        onPressed: _pasteIntoInput,
+                        padding: EdgeInsets.zero,
+                        constraints: BoxConstraints(),
+                        tooltip: 'Вставить',
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.clear, size: 20),
+                        onPressed: _clearInputText,
+                        padding: EdgeInsets.zero,
+                        constraints: BoxConstraints(),
+                        tooltip: 'Очистить',
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.photo_camera, size: 20),
+                        onPressed: _pickAndRecognizeText,
+                        tooltip: 'Распознать текст с фото',
+                        padding: EdgeInsets.zero,
+                        constraints: BoxConstraints(),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 2, top: 2),
+                        child: SpeechToTextButton(
+                          onTextRecognized: (text) {
+                            setState(() {
+                              _textController.text = text;
+                            });
+                          },
+                          language: _selectedSourceLanguage?.code ?? 'en',
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ],
           ),
