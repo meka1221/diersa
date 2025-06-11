@@ -99,16 +99,23 @@ class _SpeechToTextButtonState extends State<SpeechToTextButton> {
       mainAxisSize: MainAxisSize.min,
       children: [
         if (_isListening)
-          Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            margin: const EdgeInsets.only(bottom: 4),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface.withOpacity(0.9),
+              borderRadius: BorderRadius.circular(8),
+            ),
             child: Text(
               _text.isEmpty ? 'Слушаю...' : _text,
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context).textTheme.bodySmall,
             ),
           ),
         FloatingActionButton(
           onPressed: _isListening ? _stopListening : _startListening,
-          child: Icon(_isListening ? Icons.mic_off : Icons.mic),
+          child: Icon(_isListening ? Icons.mic_off : Icons.mic, size: 20),
+          mini: true,
+          elevation: 2,
         ),
       ],
     );

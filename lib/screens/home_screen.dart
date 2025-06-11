@@ -578,10 +578,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildInputField() {
     return Container(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
       child: Column(
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 child: TextField(
@@ -589,25 +590,35 @@ class _HomeScreenState extends State<HomeScreen> {
                   maxLines: 5,
                   decoration: InputDecoration(
                     hintText: 'Enter text to translate',
-                    border: OutlineInputBorder(),
-                    suffixIcon: SizedBox(
-                      width: 120,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                    suffixIcon: Container(
+                      width: 100,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           IconButton(
-                            icon: const Icon(Icons.paste),
+                            icon: const Icon(Icons.paste, size: 20),
                             onPressed: _pasteIntoInput,
+                            padding: EdgeInsets.zero,
+                            constraints: BoxConstraints(),
                           ),
                           IconButton(
-                            icon: const Icon(Icons.clear),
+                            icon: const Icon(Icons.clear, size: 20),
                             onPressed: _clearInputText,
+                            padding: EdgeInsets.zero,
+                            constraints: BoxConstraints(),
                           ),
                           IconButton(
-                            icon: const Icon(Icons.photo_camera),
+                            icon: const Icon(Icons.photo_camera, size: 20),
                             onPressed: _pickAndRecognizeText,
                             tooltip: 'Распознать текст с фото',
+                            padding: EdgeInsets.zero,
+                            constraints: BoxConstraints(),
                           ),
                         ],
                       ),
@@ -616,17 +627,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               const SizedBox(width: 8),
-              SpeechToTextButton(
-                onTextRecognized: (text) {
-                  setState(() {
-                    _textController.text = text;
-                  });
-                },
-                language: _selectedSourceLanguage?.code ?? 'en',
+              Container(
+                margin: EdgeInsets.only(top: 4),
+                child: SpeechToTextButton(
+                  onTextRecognized: (text) {
+                    setState(() {
+                      _textController.text = text;
+                    });
+                  },
+                  language: _selectedSourceLanguage?.code ?? 'en',
+                ),
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 12),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -648,6 +662,8 @@ class _HomeScreenState extends State<HomeScreen> {
               IconButton(
                 icon: const Icon(Icons.swap_horiz),
                 onPressed: _swapLanguages,
+                padding: EdgeInsets.zero,
+                constraints: BoxConstraints(),
               ),
               DropdownButton<Language>(
                 value: _selectedTargetLanguage,
