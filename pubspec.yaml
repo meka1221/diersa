@@ -1,0 +1,45 @@
+name: dearsa
+description: "A beautiful translator app with local auth and Lottie animations."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Для UI и UX
+  cupertino_icons: ^1.0.2
+  google_fonts: ^6.2.1               # Красивые шрифты от Google
+  lottie: ^3.1.0                     # Для JSON анимаций
+  introduction_screen: ^3.1.12
+  uuid: ^4.3.3 
+  provider: ^6.1.1                   # Для управления состоянием
+
+  # Для функционала
+  http: ^1.2.1                       # Для сетевых запросов к API
+  shared_preferences: ^2.2.3         # Для локального хранения данных
+  crypto: ^3.0.3                     # Для хеширования пароля
+  flutter_tts: ^4.0.0                # Для озвучивания текста
+  speech_to_text: ^6.6.0            # Для распознавания речи
+  google_ml_kit: ^0.16.2
+  image_picker: ^1.0.7
+  share_plus: ^7.2.1
+  path_provider: ^2.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  # Подключаем наши ассеты (анимации)
+  assets:
+    - assets/animations/
+    - assets/animations/memes/
+  
